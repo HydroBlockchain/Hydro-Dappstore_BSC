@@ -6,6 +6,7 @@ import SnowflakeContext from "../../../../contexts/snowflakeContext";
 import { fromWei, formatAmount } from "../../../../services/format";
 import HydroIcon from "../../../../common/img/hydro_grey_drop.png";
 import EthIcon from "../../../../common/img/eth_grey.png";
+import BnbIcon from "../../../../common/img/bnb_grey.png";
 
 function HeaderDropdown({ target, isOpen, toggle }) {
   const user = useContext(SnowflakeContext);
@@ -29,7 +30,7 @@ function HeaderDropdown({ target, isOpen, toggle }) {
         <PopoverBody className="header-dropdown__body">
           <p className="header-dropdown__title mb-0">External Balances:</p>
           <p className="mb-0">
-            <img src={EthIcon} alt="Eth" width={16} />{" "}
+            <img src={BnbIcon} alt="Eth" width={16} />{" "}
             {formatAmount(fromWei(ethBalance.toString()))}
           </p>
           <p>
@@ -43,8 +44,8 @@ function HeaderDropdown({ target, isOpen, toggle }) {
           </p>
         </PopoverBody>
         <div className="header-dropdown__footer">
-          <Button tag={NavLink} color="primary" exact to="/wallet">
-            Get more Hydro
+          <Button tag={NavLink} color="primary" exact to="/mint">
+            Mint Hydro Tokens
           </Button>
         </div>
       </Popover>

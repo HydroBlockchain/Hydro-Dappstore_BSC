@@ -73,7 +73,7 @@ export default class CharityFactory extends Component {
         }
      
         else{console.log('No Web3 Detected')
-        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
         } 
        
         const network = await web3.eth.net.getNetworkType();
@@ -86,7 +86,7 @@ export default class CharityFactory extends Component {
         this.setState({account: accounts[0]}); 
         }
         
-        const charityFactory = new web3.eth.Contract(CharityFactoryABI,'0x0d96af51ec52e74056ce68ac820a4e3896068381');
+        const charityFactory = new web3.eth.Contract(CharityFactoryABI,'0x77cb7b318a7DD3D0f23246df86ca32943304fD88');
         if (this._isMounted){
             this.setState({charityFactory:charityFactory});
         }

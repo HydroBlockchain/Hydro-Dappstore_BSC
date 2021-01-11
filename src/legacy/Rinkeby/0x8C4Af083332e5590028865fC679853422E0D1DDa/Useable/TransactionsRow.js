@@ -2,12 +2,11 @@
 
 import React, { useState, useContext} from 'react';
 
-import { useGenericContract,useAccountEffect} from '../../../common/hooks';
+import { useGenericContract, useNamedContract, useAccountEffect} from '../../../common/hooks';
 import { useWeb3Context } from 'web3-react';
 import Identicon from '../../../../components/identicon';
 import hydro from '../Images/hydro.png';
 import SnowflakeContext from '../../../../contexts/snowflakeContext';
-import {raindrop_address,raindrop_abi} from '../ABI/ClientRaindropABI';
 import IdentityRegistryABI from '../ABI/IdentityRegistryABI';
 import numeral from 'numeral';
 
@@ -17,8 +16,8 @@ export default function TransactionRow({ein,transactions,count}) {
   
   const context = useWeb3Context();
 
-  const clientRaindropContract = useGenericContract(raindrop_address, raindrop_abi)
-  const identityRegistryContract = useGenericContract('0xE65fB5C8AEb0305D3A1dB0BE2297f3E00B26E8c5',IdentityRegistryABI)
+  const clientRaindropContract = useNamedContract('clientRaindrop')
+  const identityRegistryContract = useGenericContract('0x37f3e9AC7e276bf0585bb7537F9e7D1AC394cf07',IdentityRegistryABI)
   const snowflakeContext = useContext(SnowflakeContext);
   
 
@@ -52,8 +51,8 @@ export default function TransactionRow({ein,transactions,count}) {
 				<td ><Identicon seed={EIN} size={27} className="list-img ml-2 mt-5 mb-5"/></td>   
         <td>{userName.slice(0,20)} ({EIN}) </td>     
       	<td><img src={hydro} className="hydro-logo mb-1 mr-1" border={1} alt="Hydro logo" width={20}/>{numeralAmount} </td>
-        <td title={transactions.transactionHash}><a href={'https://etherscan.io/tx/'+ transactions.transactionHash} target='blank'>{transactions.transactionHash.slice(15) + '...'}</a></td>
-        <td title={transactions.blockNumber}><a href={'https://etherscan.io/block/'+ transactions.blockNumber} target='blank'>{transactions.blockNumber}</a></td>
+        <td title={transactions.transactionHash}><a href={'https://testnet.bscscan.com/tx/'+ transactions.transactionHash} target='blank'>{transactions.transactionHash.slice(15) + '...'}</a></td>
+        <td title={transactions.blockNumber}><a href={'https://testnet.bscscan.com/block/'+ transactions.blockNumber} target='blank'>{transactions.blockNumber}</a></td>
 			</tr>               
      
     </React.Fragment>

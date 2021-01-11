@@ -23,7 +23,7 @@ const Identity = () => {
         <Col>
           <h3 className="title">Manage your Identity</h3>
           <h4 className="subtitle">
-            Add/Remove Ethereum Wallet Addresses to your EIN
+            Add/Remove Wallet Addresses to your EIN
           </h4>
         </Col>
       </Row>
@@ -67,7 +67,7 @@ const Identity = () => {
       <Row className="py-3">
         <Col>
           <h3 className="identity__connected-wallet-title">
-            Ethereum Wallets Connected To Your Snowflake (EIN)
+            Wallets Connected To Your Snowflake-BSC (EIN)
           </h3>
         </Col>
       </Row>

@@ -23,6 +23,11 @@ const networkDataById = {
     name: "Kovan",
     etherscanPrefix: "kovan.",
   },
+
+  97: {
+    name: 'BSC_Testnet',
+    etherscanPrefix: 'testnet.'
+  },
 };
 
 const etherscanTypes = {
@@ -87,7 +92,7 @@ export function getEtherscanLink(networkId, type, data) {
   const path = etherscanTypes[type];
   const prefix = networkDataById[networkId].etherscanPrefix;
 
-  return `https://${prefix}etherscan.io/${path}/${data}`;
+  return `https://${prefix}bscscan.com/${path}/${data}`;
 }
 
 export function getERC20Balance(web3js, ERC20Address, address) {

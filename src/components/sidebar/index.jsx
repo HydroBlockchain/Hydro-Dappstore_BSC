@@ -6,7 +6,7 @@ import React, { useState, useContext } from "react";
 import { Nav, NavItem, NavLink, Button, Badge } from "reactstrap";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import numeral from "numeral";
-
+import BinanceNetwork from '../binanceNetwork';
 import Onboarding from "../onboarding";
 import CategoriesMenu from "./components/categoriesMenu";
 import whiteHydroDrop from "../../common/img/hydro_white_drop.png";
@@ -30,10 +30,19 @@ function Sidebar() {
     hasProvider,
   } = snowflakeContext;
 
+  let wrongNetwork = false;
+
   function displayButton() {
+    wrongNetwork = true;
     if (hasProvider && networkId !== network) {
       return (
         <div className="onboardingButton">
+            <BinanceNetwork
+          step={hasProvider ? 'hydroId' : 'provider'}
+          isOpen={wrongNetwork}
+          hasProvider={hasProvider}
+          networkId={networkId}
+        />
           <Button color="warning">Wrong network</Button>
         </div>
       );
@@ -97,11 +106,18 @@ function Sidebar() {
               Manage Your Identity (EIN)
             </NavLink>
           </NavItem>
+
+          <NavItem>
+            <NavLink tag={RouterNavLink} exact to="/mint" className="sidebar__link" activeClassName="sidebar__link--active">
+              Mint Token
+            </NavLink>
+          </NavItem>
         </div>
       );
     }
 
     return (
+      <div>
       <div className="onboardingButton">
         <Onboarding
           step={hasProvider ? "hydroId" : "provider"}
@@ -111,6 +127,13 @@ function Sidebar() {
           networkId={networkId}
         />
       </div>
+
+    <NavItem>
+      <NavLink tag={RouterNavLink} exact to="/mint" className="sidebar__link" activeClassName="sidebar__link--active">
+        Mint Token
+      </NavLink>
+    </NavItem>
+</div>
     );
   }
 

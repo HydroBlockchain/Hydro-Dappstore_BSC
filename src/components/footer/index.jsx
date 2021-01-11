@@ -4,6 +4,7 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { IoLogoGithub } from "react-icons/io";
 import CallToAction from "../callToAction";
 import footerLogo from "../../common/img/ethereum_built_on_wide_color.png";
+import binanceFooter from "../../common/img/binance-smart-chain-development.jpg";
 
 function Footer() {
   return (
@@ -19,12 +20,12 @@ function Footer() {
             className="footer__built-on center"
           >
             <a
-              href="https://ethereum.org/"
+              href="https://www.binance.org/en/smartChain"
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
-                src={footerLogo}
+                src={binanceFooter}
                 className="builtOnEthereum"
                 alt="Powered by Ethereum"
               />

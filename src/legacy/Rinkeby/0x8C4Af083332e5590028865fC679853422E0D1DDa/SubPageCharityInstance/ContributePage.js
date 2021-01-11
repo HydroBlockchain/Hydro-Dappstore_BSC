@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Web3 from 'web3';
 import '../Charity-style.css';
 import CharityContractABI from '../ABI/CharityContractABI';
-import {hydroToken_ABI,hydroToken_Address} from '../ABI/HydroTokenMainnet';
+import {hydroBSC_ABI,hyrdoBSC_Address} from '../ABI/HydroToken_Contract';
 import hydro from '../Images/hydro.png';
 import ContributeButton from '../Buttons/ContributeButton';
 import Deadline from '../Useable/Deadline';
@@ -98,7 +98,7 @@ export default class ContributePage extends Component {
             }
          
             else{console.log('No Web3 Detected')
-            window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+            window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
             }  
             const network = await web3.eth.net.getNetworkType();
             const accounts = await web3.eth.getAccounts();
@@ -113,17 +113,18 @@ export default class ContributePage extends Component {
             }
 
             const charityContract = new web3.eth.Contract(CharityContractABI,this.props.Address);
+            
             if (this._isMounted){
                 this.setState({charityContract:charityContract},()=>console.log());
             }
-            const hydroToken = new web3.eth.Contract(hydroToken_ABI,hydroToken_Address);
+            const hydroToken = new web3.eth.Contract(hydroBSC_ABI,hyrdoBSC_Address);
             const hydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
             if (this._isMounted){
                 this.setState({hydroBalance:web3.utils.fromWei(hydroBalance)},()=>console.log());
             }
             const title = await charityContract.methods.title().call()
             if (this._isMounted){
-                this.setState({title:title});
+                this.setState({title:title},()=>console.log());
             }
 
             const charityGoal = await charityContract.methods.charityGoal().call()
@@ -149,7 +150,7 @@ export default class ContributePage extends Component {
                 deadline:new Date(parseInt(charityDeadline,10)*1000),
                 charityExpired: charityExpired,
                 charityStatus:parseInt(charityStatus)
-                },()=>console.log('expired?',this.state.charityExpired));
+                },()=>console.log());
             }
 
             const contractOwner = await charityContract.methods.charityOwnerAddress().call()
@@ -168,28 +169,17 @@ export default class ContributePage extends Component {
                 this.setState({remainingAmount:web3.utils.fromWei(remainingAmount)},()=>console.log());
                 
             }
-            
-            
+           
             charityContract.events.fundingReceived({toBlock:'latest'})
             .on('data',async(log) => {  
        
             const newRemainingAmount = await charityContract.methods.checkRemainingAmount().call()
             const updatedBalance = await charityContract.methods.currentBalance().call()
-            const newHydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
+            this.setState({currentBalance:web3.utils.fromWei(updatedBalance)},()=>console.log());
      
             if (this._isMounted){
-                this.setState({currentBalance:web3.utils.fromWei(updatedBalance),
-                              hydroBalance:web3.utils.fromWei(newHydroBalance),
-                              remainingAmount:web3.utils.fromWei(newRemainingAmount)},()=>console.log());
-             }
-                
-          })
-
-          charityContract.events.creatorPaid({toBlock:'latest'})
-            .on('data',async(log) => {  
-            const widthrawBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
-            if (this._isMounted){
-                this.setState({hydroBalance:web3.utils.fromWei(widthrawBalance)},()=>console.log());
+              
+                this.setState({remainingAmount:web3.utils.fromWei(newRemainingAmount)},()=>console.log());
              }
                 
           })
@@ -336,12 +326,20 @@ export default class ContributePage extends Component {
             Charity Balance: {numeral(this.state.hydroBalance).format('0,00')} <img src={hydro} className="mb-1 mr-2"  border={1} alt="Hydro logo" width={15}/>
           </p>
           
-          <div className="mt-4">
+          <div className="form-group row">
+            <div className="group mb-3 mt-3">
+					    <div className="input-group-prepend">
+						      <span className="input-group-withdraw">BSC</span>
+							      <input className="contributeInput" type="text" min="0"  autoComplete="off"  />
+              </div>
+              <label className="withdrawLabel mt-2">Withdraw To BSC Address</label>
+				    </div>
+          </div>
+
           {owner && this.state.hydroBalance > 0?<ContributeButton readyText='Withdraw Balance' 
             style={{display:'inline-block',textAlign:'center'}} 
             className="txButton mt-2" 
             method={()=>this.state.charityContract.methods.withdrawContributions(this.props.account)}/> : <button className="txDisabled"> Withdraw Balance </button>}    
-          </div>
           </div>
 
           <div className={drawerOwnerOpen} onClick={this.toggleOwnerHandler}>

@@ -37,7 +37,7 @@ export default class OverviewPage extends Component
     }
      
     else{console.log('No Web3 Detected')
-    window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+    window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
     }  
 
     const charityContract =  new web3.eth.Contract(CharityContractABI, this.props.Address);
@@ -97,7 +97,7 @@ export default class OverviewPage extends Component
 		  <div>
         <p>Recent Contributions</p>
           {body}
-            <div className="mt-1">
+            <div className="mt-2">
                 <button className="txButton" onClick={this.props.subPageMenu}> Go Back </button>
             </div>
       </div>
