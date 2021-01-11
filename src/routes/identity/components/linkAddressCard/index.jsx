@@ -19,7 +19,8 @@ import {
   addLinkedAddress,
 } from "../../../../services/utilities";
 
-import ethLogo from "../../../../common/img/eth.png";
+import ethLogo from '../../../../common/img/eth.png';
+import bnbLogo from '../../../../common/img/bnb.png';
 
 function LinkAddressCard() {
   const [step, setStep] = useState(0);
@@ -141,7 +142,7 @@ function LinkAddressCard() {
     <Card className="link">
       <Row className="p-3 justify-content-center align-items-center">
         <Col xs="10">
-          <p className="link__title">Link an Ethereum Wallet</p>
+          <p className="link__title">Link a Wallet</p>
         </Col>
         <Col xs="2" className="text-right">
           <HelpButton content={tooltips.getHydroHelp} />
@@ -149,7 +150,7 @@ function LinkAddressCard() {
       </Row>
       <Row className="justify-content-center align-items-center">
         <Col sm="3" className="text-center">
-          <img src={ethLogo} alt="Eth" />
+          <img src={bnbLogo} width={100} alt="Bnb" />
         </Col>
         <Col xs="9">
           <FormGroup>

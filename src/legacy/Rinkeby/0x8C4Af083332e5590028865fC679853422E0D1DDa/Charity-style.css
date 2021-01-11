@@ -731,7 +731,6 @@
   border:1px solid rgb(172, 137, 41);
   background:rgb(5, 13, 43);
   color:rgb(253, 253, 253);
-  margin-bottom:20px;
   border-radius:10px;
   width:70%;
   justify-content: center!important;
@@ -739,7 +738,7 @@
   padding:17px;
   font-size:16px!important;
   overflow:hidden;
-  height:360px;
+  height:370px;
   overflow-y: scroll;
   padding:40px;
   padding-bottom:20px;
@@ -853,7 +852,7 @@
 
 .registrationWrapper-charity{
   display:flex;
-  margin-top:-10px;
+  margin-top:10px;
  
 
 }
@@ -869,8 +868,8 @@
     color:rgb(255, 255, 255);
     margin:20px;
     border-radius:7px;
-    height:380px;
-    max-height:380px;
+    height:370px;
+    max-height:370px;
     width:50%;
     justify-content: center;
     align-items: center;
@@ -888,8 +887,8 @@
   color:rgb(255, 255, 255);
   margin:20px;
   border-radius:7px;
-  height:380px;
-  max-height:380px;
+  height:370px;
+  max-height:370px;
   width:50%;
   justify-content: center;
   align-items: center;
@@ -940,7 +939,7 @@
 }
 
 .Awaiting{
-  color:rgb(243, 193, 77);
+  color:rgb(235, 178, 54);
   
 }
 
@@ -958,7 +957,8 @@
   border-top: none;
   text-align:center;
   overflow-y: scroll;
-  height:375px;
+  height:370px;
+  max-height:370px;
   color:rgb(216, 216, 216);
   margin-left:5px;
 }

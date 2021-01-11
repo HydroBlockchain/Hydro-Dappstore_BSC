@@ -54,7 +54,7 @@ export default class CharityCards extends Component {
         }
      
         else{console.log('No Web3 Detected')
-        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
         }  
             const accounts = await web3.eth.getAccounts();
        

@@ -14,7 +14,7 @@ import { Status } from "../../../legacy/Rinkeby/0x16fD6e2E1C4afB9C4e7B9011417065
 import { PetOwnerView } from "../../../legacy/Rinkeby/0x26098F10E1539a6b75998AfB1DA552B8fD0AE404/index";
 import { Oxide } from "../../../legacy/Rinkeby/0x2930Cf9EE8E03C3E06Fa1828cCD8E371323Fde0f/index";
 import { ElectionFactory } from "../../../legacy/Rinkeby/0x93300e37E8865E9B502016e1090a9D10d63CDF90/index";
-import { CharityFactory } from "../../../legacy/Rinkeby/0x20C857Ad3a4DbdEE32f169EbbFadf4794d820E37/index";
+import { CharityFactory } from "../../../legacy/Rinkeby/0x8C4Af083332e5590028865fC679853422E0D1DDa/index";
 
 function LegacyDapp({ id, title, isOpen, toggle }) {
   const user = useContext(SnowflakeContext);
@@ -34,7 +34,7 @@ function LegacyDapp({ id, title, isOpen, toggle }) {
     }
 
     
-    if (id === "0x20C857Ad3a4DbdEE32f169EbbFadf4794d820E37") {
+    if (id === "0x8C4Af083332e5590028865fC679853422E0D1DDa") {
       return <CharityFactory ein={ein} />;
     }
 

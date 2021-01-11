@@ -1,19 +1,16 @@
-{
+{	"0x8C4Af083332e5590028865fC679853422E0D1DDa": {
+	"title": "Donations dApp",
+	"category": "Community",
+	"price": "2000"
+},
+	
+	
 	"0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB": {
 		"title": "Status",
-		"category": "Tools",
+		"category": "Under Development",
 		"price": "1"
 	},
-	"0x26098F10E1539a6b75998AfB1DA552B8fD0AE404": {
-		"title": "PetFriend",
-		"category": "Tools",
-		"price": "1"
-	},
-	"0x2930Cf9EE8E03C3E06Fa1828cCD8E371323Fde0f": {
-		"title": "Oxide",
-		"category": "Fintech",
-		"price": "0"
-	},
+
 	"dating-dapp": {
 		"title": "dateME",
 		"category": "Under Development",
@@ -21,14 +18,10 @@
 	},
 	"0x93300e37E8865E9B502016e1090a9D10d63CDF90": {
 		"title": "Voteum",
-		"category": "Community",
+		"category": "Under Development",
 		"price": "100000000000000000000"
 	},
-	"0x20C857Ad3a4DbdEE32f169EbbFadf4794d820E37": {
-		"title": "Donations dApp",
-		"category": "Community",
-		"price": "0"
-	},
+	
 	"lottery-dapp": {
 		"title": "Lotteryx",
 		"category": "Under Development",

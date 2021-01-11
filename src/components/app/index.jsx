@@ -16,8 +16,10 @@ import About from "../../routes/about";
 import Category from "../../routes/category";
 import Manage from "../../routes/manage";
 import Privacy from "../../routes/privacy";
+import Mint from "../../routes/mint";
 import Submit from "../../routes/submit";
 import Terms from "../../routes/terms";
+
 
 function App() {
   return (
@@ -41,6 +43,7 @@ function App() {
                 <Route exact path="/privacy" component={Privacy} />
                 <Route exact path="/terms" component={Terms} />
                 <Route exact path="/wallet" component={Wallet} />
+                <Route exact path="/mint" component={Mint} />
                 <Route exact path="/submit" component={Submit} />
                 <Route path="/category/:name" component={Category} />
                 <Route component={Home} />

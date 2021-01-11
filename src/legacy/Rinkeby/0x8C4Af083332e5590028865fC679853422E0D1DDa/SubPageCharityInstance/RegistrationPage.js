@@ -23,7 +23,7 @@ export default function RegistrationPage({ ein,Address,subPageMenu}) {
   /*Sets the Charity Contract Data*/
   const resolverContract = useGenericContract(Address, CharityContractABI);
   const snowFlake = useGenericContract(snowflake_Address, snowflake_ABI);
-  const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+  const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
   const [title, charityTitle]  = useState('');
   const [goal, charityGoal]  = useState('');
   const [balance, charityBalance]  = useState('');
