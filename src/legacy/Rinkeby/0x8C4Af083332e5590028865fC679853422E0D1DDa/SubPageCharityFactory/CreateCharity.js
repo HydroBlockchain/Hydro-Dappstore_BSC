@@ -11,7 +11,7 @@ export default function CreateCharity({account}) {
 
   const context = useWeb3Context();
 
-  const resolverContract = useGenericContract('0xf80Cd09e8851366dB17Ad7f14C7b573D8EcbCCDd',CharityFactoryABI);
+  const resolverContract = useGenericContract('0x77cb7b318a7DD3D0f23246df86ca32943304fD88',CharityFactoryABI);
 
   const [title, charityTitle]  = useState('');
   const [description, charityDescription]  = useState('');
@@ -75,7 +75,7 @@ export default function CreateCharity({account}) {
                   </div>
                 
         <div style={{display:'inline-block',textAlign:'center',width: '100%'}} className="divButtons"  >        
-          <CreateCharityButton readyText='Create Election' 
+          <CreateCharityButton readyText='Create Charity' 
               style={{display:'inline-block',textAlign:'center'}} 
               className="voteButton" 
               method={()=>resolverContract.methods.createNewCharity(title,description,parseInt(deadline),parseInt(amount),account)}

@@ -330,9 +330,9 @@ export default class ContributePage extends Component {
             <div className="group mb-3 mt-3">
 					    <div className="input-group-prepend">
 						      <span className="input-group-withdraw">BSC</span>
-							      <input className="contributeInput" type="text" min="0"  autoComplete="off"  />
+							      <input className="contributeInput" type="text" min="0" value={this.state.contractOwner} autoComplete="off"  />
               </div>
-              <label className="withdrawLabel mt-2">Withdraw To BSC Address</label>
+              <label className="withdrawLabel mt-2">Withdraw To Owner Address</label>
 				    </div>
           </div>
 

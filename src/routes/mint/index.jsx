@@ -14,10 +14,7 @@ import {
   } from 'web3-react';
 
   import {
-    fromWei,
     toWei,
-    toBN,
-    formatAmount,
   } from '../../services/format';
 
 import { useNamedContract} from '../../legacy/common/hooks';
