@@ -21,7 +21,7 @@ export default function CharityAdminPage({account, Address,subPageMenu}) {
   const context = useWeb3Context();
 
   const resolverContract = useGenericContract(Address, CharityContractABI);
-  const charityFactory = useGenericContract('0xf80Cd09e8851366dB17Ad7f14C7b573D8EcbCCDd', CharityFactoryABI);
+  const charityFactory = useGenericContract('0x5782E908a4c4fed7a9acb6Ab1bF77c034fFADFF0', CharityFactoryABI);
 
   /*Sets the data from charity*/
   const [title, charityTitle]  = useState('');

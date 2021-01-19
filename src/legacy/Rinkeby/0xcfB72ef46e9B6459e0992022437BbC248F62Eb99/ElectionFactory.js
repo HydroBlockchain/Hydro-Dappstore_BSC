@@ -62,8 +62,22 @@ export default class ElectionFactory extends Component {
 
     async loadBlockchain(){
         
+        let ethereum= window.ethereum;
+        let web3=window.web3;
 
-        const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        if(typeof ethereum !=='undefined'){
+         await ethereum.enable();
+         web3 = new Web3(ethereum);       
+        }
+ 
+        else if (typeof web3 !== 'undefined'){
+        console.log('Web3 Detected!')
+        window.web3 = new Web3(web3.currentProvider);
+        }
+     
+        else{console.log('No Web3 Detected')
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        } 
 
         const network = await web3.eth.net.getNetworkType();
         const accounts = await web3.eth.getAccounts();
@@ -84,14 +98,14 @@ export default class ElectionFactory extends Component {
         }
        
         
-        electionFactory.getPastEvents("newElectionCreated",{fromBlock: 0, toBlock:this.state.blockNumber})
+        electionFactory.getPastEvents("newElectionCreated",{fromBlock: 0, toBlock:'latest'})
         .then(events=>{
-          
+            console.log("events",events)
             var newest = events;
             var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
  
             if (this._isMounted){
-            this.setState({electionContracts:newsort,loading:false},()=>console.log());}
+            this.setState({electionContracts:newsort,loading:false},()=>console.log("events",events));}
             })
             .catch((err)=>console.error(err))
 

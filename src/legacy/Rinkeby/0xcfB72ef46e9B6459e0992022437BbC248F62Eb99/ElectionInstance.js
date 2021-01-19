@@ -9,6 +9,7 @@ import VerificationPage from './VerificationPage';
 import ChartPage from './ChartPage';
 import ProfilePage from './ProfilePage';
 import ElectionInstanceABI from './ABI/ElectionInstanceABI'
+import hydro from '../../../services/contracts/hydro';
 
 export default class ElectionFactory extends Component {
 
@@ -17,6 +18,8 @@ export default class ElectionFactory extends Component {
 		super(props)
 			this.state = {
             electionABI:[],
+            hydroContrace:[],
+            allowance:0,
             accounts:[],
             blockNumber:'',       
         }
@@ -32,7 +35,22 @@ export default class ElectionFactory extends Component {
 
     async loadBlockchain(){
      
-            const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        let ethereum= window.ethereum;
+        let web3=window.web3;
+    
+         if(typeof ethereum !=='undefined'){
+         await ethereum.enable();
+         web3 = new Web3(ethereum);       
+        }
+     
+         else if (typeof web3 !== 'undefined'){
+         console.log('Web3 Detected!')
+         window.web3 = new Web3(web3.currentProvider);
+         }
+         
+         else{console.log('No Web3 Detected')
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+         }
             const network = await web3.eth.net.getNetworkType();
 
             const accounts = await web3.eth.getAccounts();
@@ -45,12 +63,26 @@ export default class ElectionFactory extends Component {
             if (this._isMounted){
                 this.setState({electionContract:electionContract},()=>console.log());
             }
+
             const title = await electionContract.methods.snowflakeName().call()
             if (this._isMounted){
                 this.setState({title:title});
             }
 
+            const hydroContract = new web3.eth.Contract(hydro.abi,hydro.address);
+            if (this._isMounted){
+                this.setState({hydroContract:hydroContract},()=>console.log());
+            }
+
+            const allowance = await this.state.hydroContract.methods.allowance(this.state.account,this.props.Address).call()
+            if (this._isMounted){
+                this.setState({allowance:web3.utils.fromWei(allowance)},()=>console.log());
+            }
+
+            this.state.hydroContract.events.allEvents({filter:{_owner:this.state.account,_from:this.state.account,_to:this.state.account}, toBlock:'latest'})
+            .on('data',(log)=>{ this.loadBlockchain()})
         }
+        
  
 
   render() {    
@@ -60,7 +92,7 @@ export default class ElectionFactory extends Component {
         if(this.state.title !== null){
            
         if(this.props.subPage === 1 && this.state.title !== null){
-            subBody = <Registration electionABI={ElectionInstanceABI} electionAddress={this.props.Address} ein={this.props.ein} account={this.state.account}/>
+            subBody = <Registration electionABI={ElectionInstanceABI} electionAddress={this.props.Address} ein={this.props.ein} account={this.state.account} allowance={this.state.allowance}/>
         }
         else if(this.props.subPage === 2 && this.state.title !== null){
             subBody = <VerificationPage electionABI={ElectionInstanceABI} electionAddress={this.props.Address} ein={this.props.ein} account={this.state.account}/>

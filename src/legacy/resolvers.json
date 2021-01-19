@@ -1,7 +1,15 @@
-{	"0x8C4Af083332e5590028865fC679853422E0D1DDa": {
+
+
+{	"0xc1A8203b75F3fFb7464851e68072516Fb727DC9b": {
 	"title": "Donations dApp",
 	"category": "Community",
 	"price": "2000"
+},
+
+"0xcfB72ef46e9B6459e0992022437BbC248F62Eb99": {
+	"title": "Voteum",
+	"category": "Community",
+	"price": "1000"
 },
 	
 	
@@ -15,11 +23,6 @@
 		"title": "dateME",
 		"category": "Under Development",
 		"price": "0"
-	},
-	"0x93300e37E8865E9B502016e1090a9D10d63CDF90": {
-		"title": "Voteum",
-		"category": "Under Development",
-		"price": "100000000000000000000"
 	},
 	
 	"lottery-dapp": {

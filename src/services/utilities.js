@@ -219,7 +219,7 @@ function createIdentity(lib, hydroId, timestamp, signature) {
 function getHydroTestTokens(lib, account) {
   const hydroContract = new lib.eth.Contract(hydro.abi, hydro.address);
 
-  return hydroContract.methods.getMoreTokens().send({
+  return hydroContract.methods.mint( lib.utils.toWei('30000')).send({
     from: account,
   });
 }

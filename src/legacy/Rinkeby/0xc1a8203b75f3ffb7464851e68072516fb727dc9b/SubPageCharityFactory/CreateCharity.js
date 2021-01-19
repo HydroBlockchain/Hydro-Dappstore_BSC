@@ -11,7 +11,7 @@ export default function CreateCharity({account}) {
 
   const context = useWeb3Context();
 
-  const resolverContract = useGenericContract('0x77cb7b318a7DD3D0f23246df86ca32943304fD88',CharityFactoryABI);
+  const resolverContract = useGenericContract('0x5782E908a4c4fed7a9acb6Ab1bF77c034fFADFF0',CharityFactoryABI);
 
   const [title, charityTitle]  = useState('');
   const [description, charityDescription]  = useState('');

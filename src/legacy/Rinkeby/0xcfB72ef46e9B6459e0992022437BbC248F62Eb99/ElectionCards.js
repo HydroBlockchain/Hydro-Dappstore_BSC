@@ -35,9 +35,23 @@ export default class ElectionCards extends Component {
     //Loads Blockain Data
     async loadBlockchain(){
     
-            const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
-            const network = await web3.eth.net.getNetworkType();
+        let ethereum= window.ethereum;
+        let web3=window.web3;
 
+        if(typeof ethereum !=='undefined'){
+         await ethereum.enable();
+         web3 = new Web3(ethereum);       
+        }
+ 
+        else if (typeof web3 !== 'undefined'){
+        console.log('Web3 Detected!')
+        window.web3 = new Web3(web3.currentProvider);
+        }
+     
+        else{console.log('No Web3 Detected')
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        }             
+            const network = await web3.eth.net.getNetworkType();
             const accounts = await web3.eth.getAccounts();
        
              if (this._isMounted){
