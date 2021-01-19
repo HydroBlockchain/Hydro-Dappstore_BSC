@@ -7,7 +7,7 @@ import { useWeb3Context } from 'web3-react';
 import Identicon from '../../../../components/identicon';
 import hydro from '../Images/hydro.png';
 import SnowflakeContext from '../../../../contexts/snowflakeContext';
-import IdentityRegistryABI from '../ABI/IdentityRegistryABI';
+import identityRegistry from '../../../../services/contracts/identityRegistry';
 import numeral from 'numeral';
 
 
@@ -17,7 +17,7 @@ export default function TransactionRow({ein,transactions,count}) {
   const context = useWeb3Context();
 
   const clientRaindropContract = useNamedContract('clientRaindrop')
-  const identityRegistryContract = useGenericContract('0x37f3e9AC7e276bf0585bb7537F9e7D1AC394cf07',IdentityRegistryABI)
+  const identityRegistryContract = useGenericContract(identityRegistry.address,identityRegistry.abi)
   const snowflakeContext = useContext(SnowflakeContext);
   
 

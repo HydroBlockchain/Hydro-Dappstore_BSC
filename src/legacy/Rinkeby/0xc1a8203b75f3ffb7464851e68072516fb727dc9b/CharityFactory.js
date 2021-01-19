@@ -86,7 +86,7 @@ export default class CharityFactory extends Component {
         this.setState({account: accounts[0]}); 
         }
         
-        const charityFactory = new web3.eth.Contract(CharityFactoryABI,'0x77cb7b318a7DD3D0f23246df86ca32943304fD88');
+        const charityFactory = new web3.eth.Contract(CharityFactoryABI,'0x5782E908a4c4fed7a9acb6Ab1bF77c034fFADFF0');
         if (this._isMounted){
             this.setState({charityFactory:charityFactory});
         }

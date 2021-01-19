@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import Web3 from 'web3';
 import '../Charity-style.css';
 import CharityContractABI from '../ABI/CharityContractABI';
-import {hydroBSC_ABI,hyrdoBSC_Address} from '../ABI/HydroToken_Contract';
+import {hydroBSC_ABI,hydroBSC_Address} from '../ABI/HydroToken_Contract';
 import hydro from '../Images/hydro.png';
 import ContributeButton from '../Buttons/ContributeButton';
 import Deadline from '../Useable/Deadline';
 import {Doughnut} from 'react-chartjs-2';
+
 
 
 //Numerical Setting
@@ -113,18 +114,17 @@ export default class ContributePage extends Component {
             }
 
             const charityContract = new web3.eth.Contract(CharityContractABI,this.props.Address);
-            
             if (this._isMounted){
                 this.setState({charityContract:charityContract},()=>console.log());
             }
-            const hydroToken = new web3.eth.Contract(hydroBSC_ABI,hyrdoBSC_Address);
+            const hydroToken = new web3.eth.Contract(hydroBSC_ABI,hydroBSC_Address);
             const hydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
             if (this._isMounted){
                 this.setState({hydroBalance:web3.utils.fromWei(hydroBalance)},()=>console.log());
             }
             const title = await charityContract.methods.title().call()
             if (this._isMounted){
-                this.setState({title:title},()=>console.log());
+                this.setState({title:title});
             }
 
             const charityGoal = await charityContract.methods.charityGoal().call()
@@ -169,17 +169,28 @@ export default class ContributePage extends Component {
                 this.setState({remainingAmount:web3.utils.fromWei(remainingAmount)},()=>console.log());
                 
             }
-           
+            
+            
             charityContract.events.fundingReceived({toBlock:'latest'})
             .on('data',async(log) => {  
        
             const newRemainingAmount = await charityContract.methods.checkRemainingAmount().call()
             const updatedBalance = await charityContract.methods.currentBalance().call()
-            this.setState({currentBalance:web3.utils.fromWei(updatedBalance)},()=>console.log());
+            const newHydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
      
             if (this._isMounted){
-              
-                this.setState({remainingAmount:web3.utils.fromWei(newRemainingAmount)},()=>console.log());
+                this.setState({currentBalance:web3.utils.fromWei(updatedBalance),
+                              hydroBalance:web3.utils.fromWei(newHydroBalance),
+                              remainingAmount:web3.utils.fromWei(newRemainingAmount)},()=>console.log());
+             }
+                
+          })
+
+          charityContract.events.creatorPaid({toBlock:'latest'})
+            .on('data',async(log) => {  
+            const widthrawBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
+            if (this._isMounted){
+                this.setState({hydroBalance:web3.utils.fromWei(widthrawBalance)},()=>console.log());
              }
                 
           })

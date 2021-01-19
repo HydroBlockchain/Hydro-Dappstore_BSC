@@ -1,5 +1,18 @@
 .centered {
     background-color: #061b2f !important;
-    padding:70px;
-    text-align: center;
+    padding:20px 20px 70px 20px;
+  }
+
+  .token-address{
+    font-size:12px;
+    margin-bottom:100px!important;
+    color:#88b0de;
+    cursor: pointer;
+  }
+
+  .token-address:hover{
+    margin-bottom:100px!important;
+    color:#4f80b8;
+    cursor: pointer;
+    text-decoration: none;
   }
