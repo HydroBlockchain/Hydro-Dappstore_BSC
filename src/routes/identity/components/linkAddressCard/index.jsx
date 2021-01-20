@@ -157,7 +157,7 @@ function LinkAddressCard() {
             <Input
               value={newAddress}
               className="link__input"
-              placeholder="Enter an Ethereum address..."
+              placeholder="Enter a Binance Chain Address..."
               onChange={(e) => setNewAddress(e.target.value)}
             />
             <FormText className="link__helper-text">
