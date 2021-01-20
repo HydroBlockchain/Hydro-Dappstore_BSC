@@ -44,9 +44,9 @@ function Mint() {
           
           <div className='centered mt-2'>
           <a className='token-address' 
-          href='https://testnet.bscscan.com/address/0x83FAaC162062524e041dFB43681B0d958eD49Acb'
+          href='https://testnet.bscscan.com/address/0x0Aae87c2dA7A804DD9fa7bAd609baA9cbc583D35'
           target='blank'>
-            Hydro(BEP-20): 0x83FAaC162062524e041dFB43681B0d958eD49Acb
+            Hydro(BEP-20): 0x0Aae87c2dA7A804DD9fa7bAd609baA9cbc583D35
             </a>
           <br/>
           <a className='token-address' 

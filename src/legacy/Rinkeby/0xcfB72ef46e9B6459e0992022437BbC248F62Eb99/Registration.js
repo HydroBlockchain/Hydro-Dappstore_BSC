@@ -26,6 +26,12 @@ export default function Registration({ ein,electionABI, electionAddress,account,
   const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
 
 
+  let isAllowed = false;
+  if(allowance > 1500){
+    isAllowed = true;
+  }
+
+
   return (
     
     <div>
@@ -36,7 +42,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
       </p>
       <div className="registrationImage"><img src={Votingregistration} alt="snow" className="registrationImg"/></div> 
       
-      {allowance > 1500?<TransactionButton
+      {isAllowed ?<TransactionButton
          readyText='Register As Participant' 
          method={() => snowFlake.methods.addResolver(electionAddress,true,web3.utils.toWei('1100000000000000000000000000000'),'0x00')}           
           />:
@@ -55,7 +61,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
     </p>
     <div className="registrationImage"><img src={candidatesImage} alt="snow" className="registrationImg"/></div> 
 
-    {allowance > 1500?<TransactionButton 
+    {isAllowed ?<TransactionButton 
       readyText='Register As Candidate' 
       variant= "outlined" 
       color="primary" 

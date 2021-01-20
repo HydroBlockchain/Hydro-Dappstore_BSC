@@ -23,7 +23,7 @@ function Purchase({ id, isOpen, title, price, toggle }) {
   let normalizedPrice = "";
 
   if (web3.active) {
-    normalizedPrice = web3.library.utils.fromWei(price);
+    normalizedPrice = price;
   }
 
   const closeIcon = (
@@ -32,14 +32,14 @@ function Purchase({ id, isOpen, title, price, toggle }) {
 
   function getReadablePrice() {
     if (web3.active) {
-      if (normalizedPrice === "0") {
+      if (normalizedPrice === "0" || normalizedPrice === "10000000000") {
         return "0";
       }
 
       const minimum = web3.library.utils.toWei("1");
       const minimumBn = web3.library.utils.toBN(minimum);
 
-      if (web3.library.utils.toBN(price).gt(minimumBn)) {
+      if (web3.library.utils.toBN(web3.library.utils.toWei(price)).gt(minimumBn)) {
         return normalizedPrice.substring(0, 5);
       }
 
@@ -102,17 +102,19 @@ function Purchase({ id, isOpen, title, price, toggle }) {
             <p>
               This dApp costs{" "}
               <strong>
-                {normalizedPrice > 0 && normalizedPrice < 1
-                  ? "< 1"
+                {normalizedPrice > 0 && normalizedPrice === "10000000000"
+                  ? "Free"
                   : normalizedPrice}
               </strong>{" "}
               Hydro. Your dApp store wallet balance will be used. Please confirm
               the dApp title above and finalize purchase below. Refunds are not
               available. Be sure to check MetaMask for the prompt to continue.
             </p>
-            {normalizedPrice > 0 && normalizedPrice < 1 && (
+            {normalizedPrice > 0 && (
               <p className="purchase__small-price">
-                Total cost: {normalizedPrice}{" "}
+                Total cost: {normalizedPrice > 0 && normalizedPrice === "10000000000"
+                  ? "Free"
+                  : normalizedPrice}{" "}
                 <img
                   src={hydroIcon}
                   width="16"
