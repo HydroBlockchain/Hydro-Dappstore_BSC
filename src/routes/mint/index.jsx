@@ -46,7 +46,7 @@ function Mint() {
           <a className='token-address' 
           href='https://testnet.bscscan.com/address/0x0Aae87c2dA7A804DD9fa7bAd609baA9cbc583D35'
           target='blank'>
-            Hydro(BEP-20): 0x0Aae87c2dA7A804DD9fa7bAd609baA9cbc583D35
+            Hydro(BEP-20): 0x5B387f4886F043f603f7d0cb55DBd727D6649C73
             </a>
           <br/>
           <a className='token-address' 
@@ -60,7 +60,7 @@ function Mint() {
             </p>
 
             <p className='mb-4' style ={{color:"white"}} style = {{textAlign:"center"}} >
-             Mint 30,000 testnet Hydro token from binance smart chain to test the application
+             Mint 1,000 testnet Hydro token from binance smart chain to test the application
             </p> 
             <div style = {{textAlign:"center"}}>
            

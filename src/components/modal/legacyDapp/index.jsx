@@ -13,7 +13,7 @@ import SnowflakeContext from "../../../contexts/snowflakeContext";
 import { Status } from "../../../legacy/Rinkeby/0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB/index";
 import { PetOwnerView } from "../../../legacy/Rinkeby/0x26098F10E1539a6b75998AfB1DA552B8fD0AE404/index";
 import { Oxide } from "../../../legacy/Rinkeby/0x2930Cf9EE8E03C3E06Fa1828cCD8E371323Fde0f/index";
-import { ElectionFactory } from "../../../legacy/Rinkeby/0xcfB72ef46e9B6459e0992022437BbC248F62Eb99/index";
+import { ElectionFactory } from "../../../legacy/Rinkeby/0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a/index";
 // { CharityFactory } from "../../../legacy/Rinkeby/0xcfB72ef46e9B6459e0992022437BbC248F62Eb99/index";
 import { CharityFactory } from "../../../legacy/Rinkeby/0xc1a8203b75f3ffb7464851e68072516fb727dc9b/index";
 
@@ -31,7 +31,7 @@ function LegacyDapp({ id, title, isOpen, toggle }) {
       return <Oxide ein={ein} />;
     }
 
-    if (id === "0xcfB72ef46e9B6459e0992022437BbC248F62Eb99") {
+    if (id === "0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a") {
       return <ElectionFactory ein={ein} />;
     }
 

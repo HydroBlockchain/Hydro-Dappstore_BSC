@@ -219,7 +219,7 @@ function createIdentity(lib, hydroId, timestamp, signature) {
 function getHydroTestTokens(lib, account) {
   const hydroContract = new lib.eth.Contract(hydro.abi, hydro.address);
 
-  return hydroContract.methods.mint( lib.utils.toWei('30000')).send({
+  return hydroContract.methods.mint( lib.utils.toWei('1000')).send({
     from: account,
   });
 }
@@ -230,6 +230,14 @@ async function getHydroBalance(lib, account) {
   const balance = await hydroContract.methods.balanceOf(account).call();
 
   return lib.utils.toBN(balance);
+}
+
+async function checkWhitelist(lib, contract_address) {
+  const hydroContract = new lib.eth.Contract(hydro.abi, hydro.address);
+
+  const whitelist = await hydroContract.methods.whitelistedDapps(contract_address).call();
+
+  return whitelist;
 }
 
 function getSnowflakeBalance(lib, account) {
@@ -501,4 +509,5 @@ export {
   addLinkedAddress,
   getStatus,
   subscribeToDeposits,
+  checkWhitelist,
 };
