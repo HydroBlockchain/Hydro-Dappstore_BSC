@@ -54,12 +54,11 @@ function Onboarding({ isOpen, toggle, hasProvider }) {
         <ClaimStep
           signature={signature}
           hydroId={hydroId}
-          timestamp={timestamp}
-          toggle={toggle}
+          timestamp={timestamp}     
         />
       );
+      
     }
-
     return <WelcomeStep setNextStep={() => setCurrentStep(2)} />;
   }
 
