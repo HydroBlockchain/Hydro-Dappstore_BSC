@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Button} from "reactstrap";
 import { useWeb3Context } from "web3-react";
 import TransactionButton from "../../transactionButton";
 import { createIdentity } from "../../../services/utilities";
@@ -26,7 +26,7 @@ function ClaimStep({ hydroId, signature, timestamp, toggle }) {
           <p className="text-white">
             Almost there, just click below to claim your new on-chain Snowflake
             identity (EIN)! Be sure to check MetaMask for the prompt and
-            confirm.
+            confirm. once the transaction os confirmed, you can reload the page.
           </p>
         </Col>
       </Row>
@@ -40,6 +40,12 @@ function ClaimStep({ hydroId, signature, timestamp, toggle }) {
             onConfirmationAction={toggle}
           />
         </Col>
+      </Row>
+
+      <Row className="justify-content-center ">
+        <Button color="secondary" onClick={() => window.location.reload()}>
+          Reload Page 
+        </Button>
       </Row>
     </div>
   );
