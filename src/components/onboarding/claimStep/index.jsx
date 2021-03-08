@@ -26,7 +26,7 @@ function ClaimStep({ hydroId, signature, timestamp, toggle }) {
           <p className="text-white">
             Almost there, just click below to claim your new on-chain Snowflake
             identity (EIN)! Be sure to check MetaMask for the prompt and
-            confirm. once the transaction os confirmed, you can reload the page.
+            confirm. once the transaction is confirmed, you can reload the page.
           </p>
         </Col>
       </Row>

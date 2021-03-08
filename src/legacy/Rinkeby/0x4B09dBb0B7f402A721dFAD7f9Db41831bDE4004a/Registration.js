@@ -5,13 +5,13 @@ import './style.css';
 import Web3 from 'web3';
 import { useGenericContract, useNamedContract,useAccountEffect } from '../../common/hooks';
 import TransactionButton from '../../common/TransactionButton';
+import VoteButton from './customButton/VoteButton';
 import { useWeb3Context } from 'web3-react';
 import snowflake from '../../../services/contracts/snowflake';
 import hydro from '../../../services/contracts/hydro';
 
 import candidatesImage from './Images/candidatesImage.png';
 import Votingregistration from './Images/Votingregistration.png';
-import CustomButton from './customButton/CustomButton';
 import { checkWhitelist } from "../../../services/utilities";
 
 
@@ -32,7 +32,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
 
   useAccountEffect(() => {
     hydroContract.methods.whitelistedDapps(electionAddress).call().then(result =>{ result === true? disabled(false):disabled(true)});
-    hydroContract.methods.whitelistedDapps(electionAddress).call().then(result =>{ result === true? whitelisted('whitelisted by admin'):whitelisted('whitelist from admin is needed')});
+    hydroContract.methods.whitelistedDapps(electionAddress).call().then(result =>{ result === true? whitelisted('Election Approved'):whitelisted('Whitelist from admin is needed')});
   })
 
   let isAllowed = false;
@@ -40,12 +40,11 @@ export default function Registration({ ein,electionABI, electionAddress,account,
     isAllowed = true;
   }
 
- 
   
   return (
     
     <div>
-       <TransactionButton
+       <VoteButton
         readyText={whitelist} 
         method={() => hydroContract.methods._whiteListDapp(electionAddress)} 
         disabled={!disable}         
@@ -56,13 +55,13 @@ export default function Registration({ ein,electionABI, electionAddress,account,
       </p>
       <div className="registrationImage"><img src={Votingregistration} alt="snow" className="registrationImg"/></div> 
       
-      {isAllowed ?<TransactionButton
+      {isAllowed ?<VoteButton
          readyText='Register As Participant' 
          method={() => snowFlake.methods.addResolver(electionAddress,true,web3.utils.toWei('1100000000000000000000000000000'),'0x00')}           
          disabled={disable}/>:
 
           
-      <TransactionButton
+      <VoteButton
         readyText='Approve' 
         method={() => hydroContract.methods.approve(electionAddress,web3.utils.toWei('1100000000000000000000000000000'))}           
         disabled={disable}/>}
@@ -75,7 +74,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
     </p>
     <div className="registrationImage"><img src={candidatesImage} alt="snow" className="registrationImg"/></div> 
 
-    {isAllowed ?<TransactionButton 
+    {isAllowed ?<VoteButton 
       readyText='Register As Candidate' 
       variant= "outlined" 
       color="primary" 
@@ -84,7 +83,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
       disabled={disable}/>
 
       :    
-      <TransactionButton
+      <VoteButton
         readyText='Approve' 
         method={() => hydroContract.methods.approve(electionAddress,web3.utils.toWei('1100000000000000000000000000000'))}           
         disabled={disable} />}
