@@ -89,7 +89,7 @@ export default function RegistrationPage({ ein,Address,subPageMenu}) {
       
             {!isRegistered && <div className="mt-5"><ContributeButton
             readyText='Register As Contributor' 
-            method={() => snowFlake.methods.addResolver(Address,true,web3.utils.toWei('5000000000000000000000'),'0x00')}           
+            method={() => snowFlake.methods.addResolver(Address,true,web3.utils.toWei('10000000000'),'0x00')}           
             /></div>}
 
             {isRegistered && <div className="registeredEIN">You are already registered</div>}

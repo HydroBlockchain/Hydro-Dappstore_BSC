@@ -57,13 +57,13 @@ export default function Registration({ ein,electionABI, electionAddress,account,
       
       {isAllowed ?<VoteButton
          readyText='Register As Participant' 
-         method={() => snowFlake.methods.addResolver(electionAddress,true,web3.utils.toWei('1100000000000000000000000000000'),'0x00')}           
+         method={() => snowFlake.methods.addResolver(electionAddress,true,web3.utils.toWei('10000000000'),'0x00')}           
          disabled={disable}/>:
 
           
       <VoteButton
         readyText='Approve' 
-        method={() => hydroContract.methods.approve(electionAddress,web3.utils.toWei('1100000000000000000000000000000'))}           
+        method={() => hydroContract.methods.approve(electionAddress,web3.utils.toWei('10000000000'))}           
         disabled={disable}/>}
      
     </div>
@@ -85,7 +85,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
       :    
       <VoteButton
         readyText='Approve' 
-        method={() => hydroContract.methods.approve(electionAddress,web3.utils.toWei('1100000000000000000000000000000'))}           
+        method={() => hydroContract.methods.approve(electionAddress,web3.utils.toWei('10000000000'))}           
         disabled={disable} />}
  
 </div>

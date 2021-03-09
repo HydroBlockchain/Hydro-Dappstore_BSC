@@ -84,7 +84,7 @@ function DataLoader() {
           });
 
           const raindropContractAddress =
-            "0x387Ce3020e13B0a334Bb3EB25DdCb73c133f1D7A";
+            "0x6EaF0DAA157334Ea03eCC2E6E2839541d29b0673";
 
           const identity = await getIdentity(web3.library, web3.account);
           dispatch({
