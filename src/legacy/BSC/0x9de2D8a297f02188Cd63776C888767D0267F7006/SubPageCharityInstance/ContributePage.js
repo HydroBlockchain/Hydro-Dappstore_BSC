@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Web3 from 'web3';
 import '../Charity-style.css';
 import CharityContractABI from '../ABI/CharityContractABI';
-import {hydroBSC_ABI,hydroBSC_Address} from '../ABI/HydroToken_Contract';
+//import {hydroBSC_ABI,hydroBSC_Address} from '../ABI/HydroToken_Contract';
+import hydroContract from '../../../../services/contracts/hydro';
 import hydro from '../Images/hydro.png';
 import ContributeButton from '../Buttons/ContributeButton';
 import Deadline from '../Useable/Deadline';
@@ -117,8 +118,9 @@ export default class ContributePage extends Component {
             if (this._isMounted){
                 this.setState({charityContract:charityContract},()=>console.log());
             }
-            const hydroToken = new web3.eth.Contract(hydroBSC_ABI,hydroBSC_Address);
+            const hydroToken = new web3.eth.Contract(hydroContract.abi,hydroContract.address);
             const hydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
+     
             if (this._isMounted){
                 this.setState({hydroBalance:web3.utils.fromWei(hydroBalance)},()=>console.log());
             }

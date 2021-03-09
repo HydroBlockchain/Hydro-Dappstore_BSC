@@ -10,12 +10,12 @@ import PropTypes from "prop-types";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import SnowflakeContext from "../../../contexts/snowflakeContext";
 
-import { Status } from "../../../legacy/Rinkeby/0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB/index";
-import { PetOwnerView } from "../../../legacy/Rinkeby/0x26098F10E1539a6b75998AfB1DA552B8fD0AE404/index";
-import { Oxide } from "../../../legacy/Rinkeby/0x2930Cf9EE8E03C3E06Fa1828cCD8E371323Fde0f/index";
-import { ElectionFactory } from "../../../legacy/Rinkeby/0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a/index";
+import { Status } from "../../../legacy/BSC/0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB/index";
+import { PetOwnerView } from "../../../legacy/BSC/0x26098F10E1539a6b75998AfB1DA552B8fD0AE404/index";
+import { Oxide } from "../../../legacy/BSC/0x2930Cf9EE8E03C3E06Fa1828cCD8E371323Fde0f/index";
+import { ElectionFactory } from "../../../legacy/BSC/0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a/index";
 // { CharityFactory } from "../../../legacy/Rinkeby/0xcfB72ef46e9B6459e0992022437BbC248F62Eb99/index";
-import { CharityFactory } from "../../../legacy/Rinkeby/0xc1a8203b75f3ffb7464851e68072516fb727dc9b/index";
+import { CharityFactory } from "../../../legacy/BSC/0x9de2D8a297f02188Cd63776C888767D0267F7006/index";
 
 
 function LegacyDapp({ id, title, isOpen, toggle }) {
@@ -36,7 +36,7 @@ function LegacyDapp({ id, title, isOpen, toggle }) {
     }
 
     
-    if (id === "0xc1A8203b75F3fFb7464851e68072516Fb727DC9b") {
+    if (id === "0x9de2D8a297f02188Cd63776C888767D0267F7006") {
       return <CharityFactory ein={ein} />;
     }
 

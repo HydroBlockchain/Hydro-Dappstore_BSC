@@ -15,18 +15,20 @@ function Manage() {
 
   const { dapps, ein } = user;
 
+  let myDapps = dapps.filter((dapp)=>dapp === '0x9de2D8a297f02188Cd63776C888767D0267F7006' 
+                                  || dapp === '0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a')
   return (
     <div>
       <Row className="pb-3">
         <Col>
-          <h1 className="title">Your dApps: {dapps.length}</h1>
+          <h1 className="title">Your dApps: {myDapps.length}</h1>
         </Col>
       </Row>
       <Row className="py-3">
         <Col>
-          {dapps.length > 0 ? (
+          {myDapps.length > 0 ? (
             <CardDeck>
-              {dapps.map((dapp) => (
+              {myDapps.map((dapp) => (
                 <DappPreview
                   key={dapp}
                   id={dapp}

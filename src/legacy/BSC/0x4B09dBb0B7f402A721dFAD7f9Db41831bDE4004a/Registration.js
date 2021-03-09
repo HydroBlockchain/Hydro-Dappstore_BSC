@@ -32,7 +32,7 @@ export default function Registration({ ein,electionABI, electionAddress,account,
 
   useAccountEffect(() => {
     hydroContract.methods.whitelistedDapps(electionAddress).call().then(result =>{ result === true? disabled(false):disabled(true)});
-    hydroContract.methods.whitelistedDapps(electionAddress).call().then(result =>{ result === true? whitelisted('Election Approved'):whitelisted('Whitelist from admin is needed')});
+    hydroContract.methods.whitelistedDapps(electionAddress).call().then(result =>{ result === true? whitelisted('Election Approved'):whitelisted('Admin approval needed')});
   })
 
   let isAllowed = false;

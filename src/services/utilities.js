@@ -3,7 +3,7 @@ import identityRegistry from "./contracts/identityRegistry";
 import clientRaindrop from "./contracts/clientRaindrop";
 import oldClientRaindrop from "./contracts/oldClientRaindrop";
 import snowflake from "./contracts/snowflake";
-import statusAbi from "../legacy/Rinkeby/0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB/abi";
+import statusAbi from "../legacy/BSC/0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB/abi";
 
 function subscribeToDeposits(lib, address, callback) {
   const snowflakeContract = new lib.eth.Contract(
