@@ -1,18 +1,18 @@
 
 
-{	"0xc1A8203b75F3fFb7464851e68072516Fb727DC9b": {
+{	"0x9de2D8a297f02188Cd63776C888767D0267F7006": {
 	"title": "Donations dApp",
 	"category": "Community",
 	"free":true,
 	"price": "10000000000"
-},
+	},
 
-"0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a": {
+	"0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a": {
 	"title": "Voteum",
 	"category": "Community",
-	"free":false,
+	"free":true,
 	"price": "10000000000"
-},
+	},
 	
 	
 	"0x16fD6e2E1C4afB9C4e7B901141706596317e4ceB": {

@@ -91,7 +91,7 @@ function Sidebar() {
             >
               Your dApps
               <Badge className="sidebar__badge" color="secondary" pill>
-                {dapps.length}
+               
               </Badge>
             </NavLink>
           </NavItem>
