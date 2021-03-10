@@ -36,14 +36,14 @@ function BinanceNetwork(props) {
       <Row className="justify-content-center">
         <Col xs="12" sm="6" className="text-center">
           <h1 className="text-white">
-            Hydro DappStore - BSC (Testnet)
+            Hydro DappStore - BSC (Main-net)
           </h1>
         </Col>
       </Row>
       <Row className="justify-content-center py-3">
         <Col xs="12" sm="8" className="text-center">
           <p className="text-white">
-            This is the Binance Smart Chain version of Hydro dapp store. To access the application, please make sure you are connected to Binance Smart Chain-Testnet through metamask wallet.
+            This is the Binance Smart Chain version of Hydro dapp store. To access the application, please make sure you are connected to Binance Smart Chain - Mainnet through metamask wallet.
             click the link below & follow the simple steps to configure metamask wallet with binance chain.
           </p>
         </Col>

@@ -24,6 +24,11 @@ const networkDataById = {
     etherscanPrefix: "kovan.",
   },
 
+  56: {
+    name: "BSC_Mainnet",
+    etherscanPrefix: "",
+  },
+
   97: {
     name: 'BSC_Testnet',
     etherscanPrefix: 'testnet.'
