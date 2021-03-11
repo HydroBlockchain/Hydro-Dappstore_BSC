@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import hydro from "./contracts/hydro";
 import identityRegistry from "./contracts/identityRegistry";
 import clientRaindrop from "./contracts/clientRaindrop";
@@ -319,7 +321,8 @@ function getPastDeposits(lib, account) {
       filter: {
         from: account,
       },
-      fromBlock: 0,
+     fromBlock: 5572800 ,
+     //fromBlock: 0,
       toBlock: "latest",
     })
     .then((events) => {
@@ -355,7 +358,7 @@ function getPastWithdrawals(lib, account) {
         filter: {
           einFrom: ein,
         },
-        fromBlock: 0,
+        fromBlock: 5572800,
         toBlock: "latest",
       })
     )
@@ -392,7 +395,7 @@ function getPastPurchasedDapps(lib, account) {
         filter: {
           ein,
         },
-        fromBlock: 0,
+        fromBlock: 5572800 ,
         toBlock: "latest",
       })
     )

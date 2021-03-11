@@ -11,6 +11,7 @@ const networkDataById = {
     name: "Mainnet",
     etherscanPrefix: "",
   },
+
   3: {
     name: "Ropsten",
     etherscanPrefix: "ropsten.",
@@ -25,14 +26,15 @@ const networkDataById = {
   },
 
   56: {
-    name: "BSC_Mainnet",
-    etherscanPrefix: "",
+    name: 'BSC_Mainnet',
+    etherscanPrefix: ''
   },
 
   97: {
     name: 'BSC_Testnet',
     etherscanPrefix: 'testnet.'
   },
+
 };
 
 const etherscanTypes = {

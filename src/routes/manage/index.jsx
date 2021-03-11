@@ -15,7 +15,7 @@ function Manage() {
 
   const { dapps, ein } = user;
 
-  let myDapps = dapps.filter((dapp)=>dapp === '0x9de2D8a297f02188Cd63776C888767D0267F7006' 
+  let myDapps = dapps.filter((dapp)=>dapp === '0x8324EFD6A6762d713aBC48fC5473Cb0B5Af42D8a' 
                                   || dapp === '0x4B09dBb0B7f402A721dFAD7f9Db41831bDE4004a')
   return (
     <div>

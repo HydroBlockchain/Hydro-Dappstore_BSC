@@ -83,7 +83,7 @@ export default function ProfilePage({electionABI,electionAddress,ein,goToVoting,
          </li>}
 
         <li className="profileNumber"> Dapp-Store Balance: <li style={{color:"white"}} title="Hydro Balance"> {numeralSnowflakeBalance}<img src={Hydrosmall} className="hydroImage"/></li></li>
-        <li className="profileNumber">Linked Address: <a href={"https://testnet.bscscan.com/address/"+ linkedAddress} target="blank" style={{color:"white"}} title={linkedAddress}> {linkedAddress.slice(0,5)+"..."}</a></li>
+        <li className="profileNumber">Linked Address: <a href={"https://bscscan.com/address/"+ linkedAddress} target="blank" style={{color:"white"}} title={linkedAddress}> {linkedAddress.slice(0,5)+"..."}</a></li>
 
         </div>
   

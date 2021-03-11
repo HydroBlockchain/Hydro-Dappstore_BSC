@@ -19,7 +19,7 @@ function Transaction(props) {
 
   const [date, setDate] = useState(0);
   const web3 = useWeb3Context();
-  const displayedAmount = web3.library.utils.fromWei(amount);
+  const displayedAmount = amount / 1000000000000000000;
 
   if (web3.active && date === 0) {
     web3.library.eth

@@ -98,12 +98,12 @@ export default class ElectionFactory extends Component {
         }
        
         
-        electionFactory.getPastEvents("newElectionCreated",{fromBlock: 0, toBlock:'latest'})
+        electionFactory.getPastEvents("newElectionCreated",{fromBlock:5572786, toBlock:'latest'})
         .then(events=>{
             console.log("events",events)
             var newest = events;
             var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
- 
+            
             if (this._isMounted){
             this.setState({electionContracts:newsort,loading:false},()=>console.log("events",events));}
             })
