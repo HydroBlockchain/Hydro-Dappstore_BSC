@@ -15,7 +15,7 @@ import { PetOwnerView } from "../../../legacy/BSC/0x26098F10E1539a6b75998AfB1DA5
 import { Oxide } from "../../../legacy/BSC/0x2930Cf9EE8E03C3E06Fa1828cCD8E371323Fde0f/index";
 import { ElectionFactory } from "../../../legacy/BSC/0x8324EFD6A6762d713aBC48fC5473Cb0B5Af42D8a/index";
 // { CharityFactory } from "../../../legacy/Rinkeby/0xcfB72ef46e9B6459e0992022437BbC248F62Eb99/index";
-import { CharityFactory } from "../../../legacy/BSC/0x9de2D8a297f02188Cd63776C888767D0267F7006/index";
+import { CharityFactory } from "../../../legacy/BSC/0x971F70a231a16eb3e0D4602176c51AFcD86285FF/index";
 
 
 function LegacyDapp({ id, title, isOpen, toggle }) {
@@ -36,7 +36,7 @@ function LegacyDapp({ id, title, isOpen, toggle }) {
     }
 
     
-    if (id === "0x9de2D8a297f02188Cd63776C888767D0267F7006") {
+    if (id === "0x971F70a231a16eb3e0D4602176c51AFcD86285FF") {
       return <CharityFactory ein={ein} />;
     }
 

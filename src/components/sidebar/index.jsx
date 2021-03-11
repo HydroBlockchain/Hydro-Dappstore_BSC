@@ -107,11 +107,7 @@ function Sidebar() {
             </NavLink>
           </NavItem>
 
-          <NavItem>
-            <NavLink tag={RouterNavLink} exact to="/mint" className="sidebar__link" activeClassName="sidebar__link--active">
-              Mint Token
-            </NavLink>
-          </NavItem>
+         
         </div>
       );
     }
@@ -128,11 +124,6 @@ function Sidebar() {
         />
       </div>
 
-    <NavItem>
-      <NavLink tag={RouterNavLink} exact to="/mint" className="sidebar__link" activeClassName="sidebar__link--active">
-        Mint Token
-      </NavLink>
-    </NavItem>
 </div>
     );
   }

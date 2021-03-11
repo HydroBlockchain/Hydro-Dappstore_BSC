@@ -46,7 +46,7 @@ export default class OverviewPage extends Component
     const blockNumber = await web3.eth.getBlockNumber();
     
     if (this._isMounted){
-    this.state.charityContract.getPastEvents("fundingReceived",{fromBlock: 5000000, toBlock:'latest'})
+    this.state.charityContract.getPastEvents("fundingReceived",{fromBlock: blockNumber - 4900, toBlock:'latest'})
     .then(events=>{
 
     if (this._isMounted){

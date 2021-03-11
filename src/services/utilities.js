@@ -321,7 +321,7 @@ function getPastDeposits(lib, account) {
       filter: {
         from: account,
       },
-     fromBlock: 5572800 ,
+     fromBlock: "latest" - 5000,
      //fromBlock: 0,
       toBlock: "latest",
     })
@@ -358,7 +358,7 @@ function getPastWithdrawals(lib, account) {
         filter: {
           einFrom: ein,
         },
-        fromBlock: 5572800,
+        fromBlock: "latest" - 5000,
         toBlock: "latest",
       })
     )
@@ -395,7 +395,7 @@ function getPastPurchasedDapps(lib, account) {
         filter: {
           ein,
         },
-        fromBlock: 5572800 ,
+        fromBlock: "latest" - 5000,
         toBlock: "latest",
       })
     )

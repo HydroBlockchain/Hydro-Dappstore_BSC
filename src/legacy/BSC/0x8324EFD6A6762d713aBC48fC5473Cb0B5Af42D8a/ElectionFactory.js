@@ -38,7 +38,10 @@ export default class ElectionFactory extends Component {
         super(props)
 			this.state = {
             electionFactory:'',
+            
             electionContracts:[],
+            latest_electionContracts:[],
+
             raindrop:'',
             loading:true,
             page:1,
@@ -76,7 +79,7 @@ export default class ElectionFactory extends Component {
         }
      
         else{console.log('No Web3 Detected')
-        window.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));  
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider('https://bsc-dataseed1.binance.org:443'));  
         } 
 
         const network = await web3.eth.net.getNetworkType();
@@ -96,8 +99,26 @@ export default class ElectionFactory extends Component {
         if (this._isMounted){
             this.setState({electionFactory:electionFactory});
         }
-       
+
+
+        const electionAddress = await electionFactory.methods.checkElections().call()
+        if (this._isMounted){
+           this.setState({electionContracts:electionAddress},()=>console.log())
+           this.setState({latest_electionContracts:this.state.electionContracts.slice().reverse()})
+        }
+
+
+        electionFactory.events.newElectionCreated({fromBlock:'latest', toBlock:'latest'})
+        .on('data',async(log) => {  
+        const incomingElectionAddress = await electionFactory.methods.checkElections().call()
         
+        this.setState({electionContracts:electionAddress},()=>console.log())
+        this.setState({latest_electionContracts:this.state.electionContracts.slice().reverse()})
+        })
+        this.setState({loading:false})
+        
+       
+        /*fromBlock:5572786 - 5000
         electionFactory.getPastEvents("newElectionCreated",{fromBlock:5572786, toBlock:'latest'})
         .then(events=>{
             console.log("events",events)
@@ -117,8 +138,8 @@ export default class ElectionFactory extends Component {
         var newest = this.state.electionContracts;
         var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);    
         this.setState({electionContracts:newsort});      
-        },7000))
-
+        },7000))*/
+    
         }
     
     /*Paginate Election Cards in 6 items*/  
@@ -172,9 +193,9 @@ export default class ElectionFactory extends Component {
     }
 
     /*Sets the Election Contract according to what user selected*/
-    setPage=(address,id,ein,subPage)=>{
-    if(address !== null && id !== null & ein !== null){
-    this.setState({address:address,id:id,ein:ein},()=>this.pollPage());
+    setPage=(address,ein,subPage)=>{
+    if(address !== null && ein !== null){
+    this.setState({address:address,ein:ein},()=>this.pollPage());
     }
     }
 
@@ -218,15 +239,15 @@ export default class ElectionFactory extends Component {
                 {this.state.page === 1 && this.state.subPage === 1 && !this.state.loading &&<div className="rows">
                 
                 {this.state.pageOfItems.map((contracts,index)=>(
-                    <div className="columns"onClick={()=>this.setPage(contracts.returnValues._deployedAddress, contracts.returnValues._id, this.props.ein, this.state.subPage)} key = {index} >
-                   <ElectionCards key = {index} Address = {contracts.returnValues._deployedAddress} ID={contracts.returnValues._id} ein={this.props.ein} />
+                    <div className="columns"onClick={()=>this.setPage(contracts, this.props.ein, this.state.subPage)} key = {index} >
+                   <ElectionCards key = {index} Address = {contracts} ein={this.props.ein} />
                       </div>))}</div>}
 
                 {this.state.page === 1 && this.state.subPage === 2 && <NewElection/>}
                       
-                {this.state.page === 2 &&<div><ElectionInstance  Address = {this.state.address} ID={this.state.id} ein={this.state.ein} subPage={this.state.subPage} goToVoting={this.subPageVoting} goToRegistration={this.subPageRegistration}/></div>}
+                {this.state.page === 2 &&<div><ElectionInstance  Address = {this.state.address} ein={this.state.ein} subPage={this.state.subPage} goToVoting={this.subPageVoting} goToRegistration={this.subPageRegistration}/></div>}
                
-                <div className={custom}>  <JwPagination items={this.state.electionContracts} onChangePage={this.onChangePage} maxPages={5} pageSize={4} styles={customStyles} /></div>
+                <div className={custom}>  <JwPagination items={this.state.latest_electionContracts} onChangePage={this.onChangePage} maxPages={5} pageSize={4} styles={customStyles} /></div>
               
 
               
