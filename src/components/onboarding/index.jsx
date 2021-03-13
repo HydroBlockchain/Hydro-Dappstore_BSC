@@ -19,14 +19,15 @@ import HydroIdStep from "./hydroIdStep";
 import PermissionStep from "./permissionStep";
 import ClaimStep from "./claimStep";
 
-function Onboarding({ isOpen, toggle, hasProvider }) {
+function Onboarding({ isOpen, toggle, hasProvider, networkId }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [signature, setSignature] = useState("");
   const [hydroId, setHydroId] = useState("");
   const [timestamp] = useState(Math.round(new Date() / 1000) - 120);
 
+ 
   function displayStep() {
-    if (!hasProvider) {
+    if (!hasProvider || networkId === null) {
       return <ProviderStep />;
     }
 
