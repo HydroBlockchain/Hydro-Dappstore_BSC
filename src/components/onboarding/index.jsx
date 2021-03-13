@@ -27,10 +27,9 @@ function Onboarding({ isOpen, toggle, hasProvider, networkId }) {
   const [timestamp] = useState(Math.round(new Date() / 1000) - 120);
   const user = useContext(SnowflakeContext);
   const { ethAddress } = user;
-  let x = 1;
 
   function displayStep() {
-    if (!hasProvider && x !== 1) {
+    if (!hasProvider && ethAddress) {
       return <ProviderStep />;
     }
 
