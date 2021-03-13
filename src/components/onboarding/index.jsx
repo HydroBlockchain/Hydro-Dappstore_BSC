@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import {
   Modal,
@@ -18,16 +18,19 @@ import WelcomeStep from "./welcomeStep";
 import HydroIdStep from "./hydroIdStep";
 import PermissionStep from "./permissionStep";
 import ClaimStep from "./claimStep";
+import SnowflakeContext from "../../contexts/snowflakeContext";
 
 function Onboarding({ isOpen, toggle, hasProvider, networkId }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [signature, setSignature] = useState("");
   const [hydroId, setHydroId] = useState("");
   const [timestamp] = useState(Math.round(new Date() / 1000) - 120);
+  const user = useContext(SnowflakeContext);
+  const { ethAddress } = user;
+  let x = 1;
 
- 
   function displayStep() {
-    if (!hasProvider && networkId === null) {
+    if (!hasProvider && x !== 1) {
       return <ProviderStep />;
     }
 
