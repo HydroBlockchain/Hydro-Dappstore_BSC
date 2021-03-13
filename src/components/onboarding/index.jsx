@@ -27,7 +27,7 @@ function Onboarding({ isOpen, toggle, hasProvider, networkId }) {
 
  
   function displayStep() {
-    if (!hasProvider || networkId === null) {
+    if (!hasProvider && networkId === null) {
       return <ProviderStep />;
     }
 
