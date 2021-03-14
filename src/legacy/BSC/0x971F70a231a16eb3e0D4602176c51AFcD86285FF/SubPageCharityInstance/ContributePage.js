@@ -1,14 +1,17 @@
 /* eslint-disable */
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import Web3 from 'web3';
 import '../Charity-style.css';
 import CharityContractABI from '../ABI/CharityContractABI';
 //import {hydroBSC_ABI,hydroBSC_Address} from '../ABI/HydroToken_Contract';
 import hydroContract from '../../../../services/contracts/hydro';
+import snowflakeContract from '../../../../services/contracts/snowflake';
 import hydro from '../Images/hydro.png';
 import ContributeButton from '../Buttons/ContributeButton';
 import Deadline from '../Useable/Deadline';
 import {Doughnut} from 'react-chartjs-2';
+
+
 
 
 
@@ -46,10 +49,11 @@ var originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
 /*End of Doughtnut Chart Percentage*/
 
 
+
 export default class ContributePage extends Component {
 
-
 	constructor(props) {
+    
 		super(props)
 			this.state = {
             charityContract:[],
@@ -65,6 +69,7 @@ export default class ContributePage extends Component {
             charityStatus:'',
             contractOwner:'',
             contributionAmount:0,
+            dappStoreBalance:0,
             currentBalance:0,
             charityExpired:true,
            
@@ -119,6 +124,8 @@ export default class ContributePage extends Component {
                 this.setState({charityContract:charityContract},()=>console.log());
             }
             const hydroToken = new web3.eth.Contract(hydroContract.abi,hydroContract.address);
+            const snowflake = new web3.eth.Contract(snowflakeContract.abi,snowflakeContract.address);
+
             const hydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
      
             if (this._isMounted){
@@ -171,6 +178,11 @@ export default class ContributePage extends Component {
                 this.setState({remainingAmount:web3.utils.fromWei(remainingAmount)},()=>console.log());
                 
             }
+
+            const dappstoreBalance = await snowflake.methods.deposits(this.props.ein).call()
+            if (this._isMounted){
+                this.setState({dappStoreBalance:web3.utils.fromWei(dappstoreBalance)},()=>console.log());  
+            }
             
             
             charityContract.events.fundingReceived({toBlock:'latest'})
@@ -179,11 +191,14 @@ export default class ContributePage extends Component {
             const newRemainingAmount = await charityContract.methods.checkRemainingAmount().call()
             const updatedBalance = await charityContract.methods.currentBalance().call()
             const newHydroBalance = await hydroToken.methods.balanceOf(this.props.Address).call()
+            const newDappstoreBalance = await snowflake.methods.deposits(parseInt(this.props.ein)).call()
      
             if (this._isMounted){
                 this.setState({currentBalance:web3.utils.fromWei(updatedBalance),
                               hydroBalance:web3.utils.fromWei(newHydroBalance),
-                              remainingAmount:web3.utils.fromWei(newRemainingAmount)},()=>console.log());
+                              remainingAmount:web3.utils.fromWei(newRemainingAmount),
+                              dappStoreBalance:web3.utils.fromWei(newDappstoreBalance)},()=>console.log());
+                            
              }
                 
           })
@@ -238,13 +253,19 @@ export default class ContributePage extends Component {
   render() {    
 
     let owner = false;
+    let disable = false;
     let chartData = [this.state.currentBalance,(this.state.charityGoal - this.state.currentBalance)];
+    
     if(this.state.contractOwner === this.props.account){
       owner = true;
     }
 
     if(parseInt(this.state.currentBalance) > parseInt(this.state.charityGoal)){
       chartData = [this.state.currentBalance,0];
+    }
+
+    if(this.state.dappStoreBalance < this.state.contributionAmount){
+      disable = true;
     }
 
    
@@ -369,20 +390,23 @@ export default class ContributePage extends Component {
 
         {!this.state.charityExpired  && <div className={drawerContributeClasses}>
           <p>Contribute</p> 
-          
-          {this.state.isRegistered ? <div className="form-group row">
+          Dapp Store Balance: {this.state.dappStoreBalance} <img src={hydro} className="hydro-logo"  alt="Hydro logo" width={20}/>
+          {this.state.isRegistered ? <div className="form-group row mt-2">
 			    <div className="group mb-3">
 				    <div className="input-group-prepend">
 				      <span className="input-group-withdraw" width={5}><img src={hydro} className="hydro-logo"  alt="Hydro logo" width={20}/></span>
 				      <input className="contributeInput" type="number" min="0"  autoComplete="off" onChange={this.contributionChange}/>
             </div>
               <label className="contributeLabel mt-2">How much do you want to contribute?</label>
+              {parseInt(this.state.dappStoreBalance) < this.state.contributionAmount && <label className="contributeLabel mt-2" color="danger">Insufficient Funds!</label>}
+
 			    </div>
 		    </div> : <p>You are not registered to this charity.</p> }
       
           {this.state.isRegistered ? <ContributeButton readyText='Contribute' 
             style={{display:'inline-block',textAlign:'center'}} 
             className="voteButton" 
+            disabled={disable}
             method={()=>this.state.charityContract.methods.contribute(this.state.contributionAmount)}
             /> : <button className="txButton" onClick = {this.props.subPageRegistration}> Go To Registration Page</button> }
           </div>}

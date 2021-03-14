@@ -26,7 +26,7 @@ function Transactions() {
   const [activePage, setActivePage] = useState(0);
 
   const web3 = useWeb3Context();
-  const itemList = ["All", "Deposits", "Withdrawals", "Purchased dApps"];
+  const itemList = ["All", "Recent Deposits", "Recent Withdrawals", "Recent Purchased dApps"];
 
   useEffect(() => {
     async function fetchTransactions() {
@@ -58,10 +58,10 @@ function Transactions() {
     if (tabName === "All") {
       return deposits.concat(withdrawals).concat(purchasedDapps);
     }
-    if (tabName === "Deposits") {
+    if (tabName === "Recent Deposits") {
       return deposits;
     }
-    if (tabName === "Withdrawals") {
+    if (tabName === "Recent Withdrawals") {
       return withdrawals;
     }
     return purchasedDapps;

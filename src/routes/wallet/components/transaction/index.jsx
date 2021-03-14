@@ -87,7 +87,7 @@ function Transaction(props) {
             }
           >
             {type === "withdrawal" || type === "purchase" ? "-" : "+"}{" "}
-            {parseInt(displayedAmount, 10) > 1 ? displayedAmount : "< 1"}
+            {parseInt(displayedAmount, 10) >= 1 ? displayedAmount : "< 1"}
           </p>
         </Col>
       </Row>

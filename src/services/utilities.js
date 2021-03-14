@@ -306,14 +306,14 @@ function removeResolver(lib, account, resolver) {
   });
 }
 
-function getPastDeposits(lib, account) {
+async function getPastDeposits(lib, account) {
   const snowflakeContract = new lib.eth.Contract(
     snowflake.abi,
     snowflake.address
   );
 
   lib.currentProvider.setMaxListeners(350);
-
+  const blockNumber = await lib.eth.getBlockNumber();
   const deposits = [];
 
   return snowflakeContract
@@ -321,7 +321,7 @@ function getPastDeposits(lib, account) {
       filter: {
         from: account,
       },
-     fromBlock: "latest" - 5000,
+     fromBlock: blockNumber - 4500,
      //fromBlock: 0,
       toBlock: "latest",
     })
@@ -342,14 +342,15 @@ function getPastDeposits(lib, account) {
     .catch((err) => err);
 }
 
-function getPastWithdrawals(lib, account) {
+async function getPastWithdrawals(lib, account) {
   const snowflakeContract = new lib.eth.Contract(
     snowflake.abi,
     snowflake.address
+
   );
 
   lib.currentProvider.setMaxListeners(350);
-
+  const blockNumber = await lib.eth.getBlockNumber();
   const withdrawals = [];
 
   return getAccountEin(lib, account)
@@ -358,7 +359,8 @@ function getPastWithdrawals(lib, account) {
         filter: {
           einFrom: ein,
         },
-        fromBlock: "latest" - 5000,
+       // fromBlock: "latest" - 5000,
+        fromBlock: blockNumber - 4500,
         toBlock: "latest",
       })
     )
@@ -379,7 +381,7 @@ function getPastWithdrawals(lib, account) {
     .catch((err) => err);
 }
 
-function getPastPurchasedDapps(lib, account) {
+async function getPastPurchasedDapps(lib, account) {
   const snowflakeContract = new lib.eth.Contract(
     snowflake.abi,
     snowflake.address
@@ -388,6 +390,7 @@ function getPastPurchasedDapps(lib, account) {
   const purchases = [];
 
   lib.currentProvider.setMaxListeners(350);
+  const blockNumber = await lib.eth.getBlockNumber();
 
   return getAccountEin(lib, account)
     .then((ein) =>
@@ -395,7 +398,7 @@ function getPastPurchasedDapps(lib, account) {
         filter: {
           ein,
         },
-        fromBlock: "latest" - 5000,
+        fromBlock: blockNumber - 4500,
         toBlock: "latest",
       })
     )
